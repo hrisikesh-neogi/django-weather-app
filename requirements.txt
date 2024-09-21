@@ -1,0 +1,8 @@
+django==5.1.1
+importlib-metadata==8.0.0
+importlib-resources==6.4.0
+ipykernel==6.29.5
+jaraco.collections==5.1.0
+opencage==3.0.2
+python-dotenv==1.0.1
+tomli==2.0.1
