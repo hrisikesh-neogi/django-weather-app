@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <!-- Custom CSS -->
+    <style>
+        /* Background and layout styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Center the container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        /* Weather box styling */
+        .weather-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Style the logo */
+        .logo-container {
+            margin-right: 30px;
+        }
+
+        .app-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Style the form */
+        .form-container {
+            color: white;
+        }
+
+        .form-container h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            margin-right: 100px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 300px;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3e97a7;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1cc3e0;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: red;
+            margin-top: 20px;
+        }
+
+        /* Weather details styling */
+        .weather-container {
+            color: white;
+            margin-top: 20px;
+            border-radius: 0%;
+            margin-right: 100px; }
+
+        .weather-details p {
+            margin: 5px 0;
+        }
+
+        .history-container {
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.308);
+            padding: 10px;
+            text-align: center;
+            border-radius: 30px;
+
+        }
+
+        footer {
+            background-color: #3589919f; /* Dark background */
+            color: #fff;           /* White text */
+            text-align: center;    /* Center the text */
+            padding: 20px;         /* Add some padding */
+            position: fixed;     /* Relative positioning */
+            bottom: 0;             /* Stick it to the bottom */
+            width: 100%;  
+                    /* Full width */
+        }
+
+        footer p {
+            margin: 0;             /* Remove default margin */
+            font-size: 14px;       /* Font size */
+            line-height: 1.5;      /* Line height */
+        }
+
+    
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="weather-box">
+            <!-- Logo Section -->
+            <div class="logo-container">
+                <img src="{% static 'images/logo.png' %}" alt="Weather App Logo" class="app-logo">
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-container">
+                <h1>Weather Check</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="city" placeholder="Enter city name" required>
+                    <button type="submit">Get Weather</button>
+                </form>
+                
+                <!-- Display error message if any -->
+                {% if error_message %}
+                <div class="error-message">
+                    <p>{{ error_message }}</p>
+                </div>
+                {% endif %}
+
+                <!-- Display weather details if available -->
+                {% if weather_data %}
+                <div class="weather-container">
+                    <h2>{{ city }} {{country_flag}}
+                        <h4>Time: {{time}}</h4>
+                    </h2>
+
+                    <div class="weather-details">
+                        <p><strong>Temperature:</strong> {{ weather_data.current_weather.temperature }} °C</p>
+                        <p><strong>Wind Speed:</strong> {{ weather_data.current_weather.windspeed }} km/h</p>
+                        <p><strong>Wind Direction:</strong> {{ weather_data.current_weather.winddirection }}°</p>
+                        
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Display search history -->
+        <div class="history-container">
+            <h2>Search History</h2>
+            <ul>
+                {% for history in search_history %}
+                <li>
+                    <strong>{{ history.city }}</strong> - 
+                    {{ history.temperature }}°C, 
+                    {{ history.wind_speed }} km/h, 
+                    {{ history.weather_description }} 
+                    ({{ history.search_time|date:"Y-m-d H:i" }})
+                </li>
+                {% empty %}
+                <li>No searches yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+
+
+    </div>
+
+</body>
+<footer>
+    <p>&copy; 2024 Debosmita Dey. All rights reserved.</p>
+</footer>
+
+</html>
