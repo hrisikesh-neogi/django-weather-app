@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +14,56 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+            background-image: url('https://images.unsplash.com/photo-1584931423298-c576fda54bd2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-position: center;
+
+            
+            ;
         }
 
-        /* Center the container */
+        /* Sidebar navigation panel styling */
+        .sidenav {
+            height: 100%; /* Full height */
+            width: 0; /* Initial width 0 */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9); /* Black with opacity */
+            overflow-x: hidden; /* Disable horizontal scroll */
+            transition: 0.5s; /* 0.5 second transition effect */
+            padding-top: 60px; /* Place content 60px from the top */
+        }
+
+        /* Sidebar links */
+        .sidenav ul {
+            padding-left: 0;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        /* Close button styling */
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        /* Weather box styling with transition */
         .container {
             display: flex;
             justify-content: center;
@@ -26,20 +71,27 @@
             height: 100vh;
             flex-direction: column;
             text-align: center;
+            transition: margin-left 0.5s; /* Transition for smooth sliding */
         }
 
-        /* Weather box styling */
+        .container.shifted {
+            margin-left: 250px; /* Shift when sidebar opens */
+        }
+
+        /* Other existing styling */
         .weather-box {
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(0, 0, 0, 0.5);
+            background: #01423ec5;
+            border-top: 10px solid ;
+
+            border-color: #000000a4;
             padding: 20px;
             border-radius: 20px;
             margin-bottom: 20px;
         }
 
-        /* Style the logo */
         .logo-container {
             margin-right: 30px;
         }
@@ -53,7 +105,6 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* Style the form */
         .form-container {
             color: white;
         }
@@ -61,7 +112,7 @@
         .form-container h1 {
             font-size: 36px;
             margin-bottom: 20px;
-            margin-right: 100px;
+            padding-right: 100px;
         }
 
         input[type="text"] {
@@ -75,7 +126,7 @@
 
         button {
             padding: 10px 20px;
-            background-color: #3e97a7;
+            background-color: #1fa190;
             border: none;
             border-radius: 5px;
             color: white;
@@ -84,58 +135,82 @@
         }
 
         button:hover {
-            background-color: #1cc3e0;
-        }
-
-        /* Error message styling */
-        .error-message {
-            color: red;
-            margin-top: 20px;
-        }
-
-        /* Weather details styling */
-        .weather-container {
-            color: white;
-            margin-top: 20px;
-            border-radius: 0%;
-            margin-right: 100px; }
-
-        .weather-details p {
-            margin: 5px 0;
-        }
-
-        .history-container {
-            color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.308);
-            padding: 10px;
-            text-align: center;
-            border-radius: 30px;
-
+            background-color: #0e7477;
         }
 
         footer {
-            background-color: #3589919f; /* Dark background */
-            color: #fff;           /* White text */
-            text-align: center;    /* Center the text */
-            padding: 20px;         /* Add some padding */
-            position: fixed;     /* Relative positioning */
-            bottom: 0;             /* Stick it to the bottom */
-            width: 100%;  
-                    /* Full width */
+            background-color: #3589919f;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
         footer p {
-            margin: 0;             /* Remove default margin */
-            font-size: 14px;       /* Font size */
-            line-height: 1.5;      /* Line height */
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
-    
+        .info-button {
+            background-color: #1fa190;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .info-button:hover {
+            background-color: #0e7477;
+        }
+
+        .weather-info {
+            margin-top: 20px;
+            /* padding-right: 20px; */
+            border-radius: 10px;
+            background-color: #015a565d;
+            color: #ffffff;
+            font-size: 18px;
+            text-align: center justify;
+            border-color: whitesmoke;
+            border-radius: 30px;
+            padding: 10px;
+            border-right: 10px solid;
+            border-left: 10px solid;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- Sidebar for Search History -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h2 style="color: white;">Search History</h2>
+        <ul>
+            {% for history in search_history %}
+            <li style="color: white;">
+                <strong>{{ history.city }}</strong> - 
+                {{ history.temperature }}°C, 
+                {{ history.wind_speed }} km/h, 
+                {{ history.weather_description }} 
+                ({{ history.search_time|date:"Y-m-d H:i" }})
+            </li>
+            {% empty %}
+            <li style="color: white;">No searches yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Main container with weather search box -->
+    <div class="container" id="mainContainer">
         <div class="weather-box">
             <!-- Logo Section -->
             <div class="logo-container">
@@ -150,8 +225,6 @@
                     <input type="text" name="city" placeholder="Enter city name" required>
                     <button type="submit">Get Weather</button>
                 </form>
-                
-                <!-- Display error message if any -->
                 {% if error_message %}
                 <div class="error-message">
                     <p>{{ error_message }}</p>
@@ -166,41 +239,43 @@
                     </h2>
 
                     <div class="weather-details">
+                        <div class="weather-info">
                         <p><strong>Temperature:</strong> {{ weather_data.current_weather.temperature }} °C</p>
                         <p><strong>Wind Speed:</strong> {{ weather_data.current_weather.windspeed }} km/h</p>
                         <p><strong>Wind Direction:</strong> {{ weather_data.current_weather.winddirection }}°</p>
-                        
+                        </div>
+                        <a href="{% url 'place_info' city %}" class="info-button">
+                            More about {{ city }}
+                        </a>
                     </div>
                 </div>
                 {% endif %}
+                
+                <!-- Error and weather data display (omitted for brevity) -->
             </div>
         </div>
-        <!-- Display search history -->
-        <div class="history-container">
-            <h2>Search History</h2>
-            <ul>
-                {% for history in search_history %}
-                <li>
-                    <strong>{{ history.city }}</strong> - 
-                    {{ history.temperature }}°C, 
-                    {{ history.wind_speed }} km/h, 
-                    {{ history.weather_description }} 
-                    ({{ history.search_time|date:"Y-m-d H:i" }})
-                </li>
-                {% empty %}
-                <li>No searches yet.</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-
-
-
     </div>
 
-</body>
-<footer>
-    <p>&copy; 2024 Debosmita Dey. All rights reserved.</p>
-</footer>
+    <!-- Open Sidebar Button -->
+    <button style="position: fixed; top: 20px; left: 20px;" onclick="openNav()">☰ Search History</button>
 
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Debosmita Dey. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for collapsible sidebar -->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("mainContainer").classList.add("shifted");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("mainContainer").classList.remove("shifted");
+        }
+    </script>
+
+</body>
 </html>

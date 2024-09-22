@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About {{ city }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #000000, #5300004d); /* Vibrant gradient background */
+            background-image: url('https://images.unsplash.com/photo-1456425731181-2152d80d946c?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            /* color: #ee0000; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.555);
+            padding: 40px;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fcc820;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #ffd000cb;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #ffd0008f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>About {{ city }}</h1>
+
+        {% if summary %}
+        <p>{{ summary }}</p>
+        {% else %}
+        <p>Sorry, no information found for {{ city }} on Wikipedia.</p>
+        {% endif %}
+
+        <a href="{% url 'weather_view' %}">Back to Weather</a>
+    </div>
+
+</body>
+</html>
