@@ -6,4 +6,6 @@ ipykernel==6.29.5
 jaraco.collections==5.1.0
 opencage==3.0.2
 python-dotenv==1.0.1
+pytz==2024.2
 tomli==2.0.1
+wikipedia==1.4.0
