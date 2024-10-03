@@ -39,3 +39,21 @@ python manage.py runserver
 6. [Hit the url](http://127.0.0.1:8000/) - http://127.0.0.1:8000/
 
 
+
+## To Run
+
+1. Go to the folder `weather_project` by writing the command
+
+```bash
+   cd weather_project
+```
+
+2. Run the command
+```bash
+python manage.py runserver
+
+```
+
+
+3. [Hit the url](http://127.0.0.1:8000/) - http://127.0.0.1:8000/
+
